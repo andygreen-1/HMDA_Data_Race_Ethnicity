@@ -98,7 +98,25 @@ Taking it a step further, I also analyze how these relationships play out geogra
 
 <iframe seamless frameborder="0" src="https://public.tableau.com/views/DCMapMortgageApplicationsbyRaceEthnicity/Dashboard1?:embed=yes&:display_count=yes&:showVizHome=no" width = '1000' height = '900' scrolling='no' ></iframe>
 
+*If there any issues with rendering the above dashboard on your screen, please use* [*this link*](https://public.tableau.com/views/DCMapMortgageApplicationsbyRaceEthnicity/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link) *to view it directly on Tableau Public.*
 
+Toggling through the different metrics contained in the dropdown menu highlights a few main points. First, the “Percentage of Applications – White Consumers” metric shows that white consumers make up a large proportion of applications across much of Washington, D.C., with the exception of the census tracts in wards 7 and 8 (East of the Anacostia River, or the Southeast portion of the map). These census tracts, which have predominantly non-white populations, correspond with those in the bottom-right section of the graph in Figure 2. Next, the “Percentage of Population – White Residents” metric shows that the census tracts in Northwest D.C. and the Capitol Hill area have large proportions of white residents, while much of the rest of the city does not. Finally, the “Difference of Application and Population Percentages” metric, which is calculated by simply subtracting the population percentage metric from the application percentage metric, highlights the neighborhoods that have a large percentage of applications from white consumers, despite having a relatively small proportion of white residents currently. The map shows that Northeast D.C., and some of the Northwest neighborhoods that are close to Northeast, are the areas with the largest discrepancies between these two metrics. The census tract with the largest discrepancy is 79.03, which is near RFK Stadium in Northeast D.C. In this tract, 17% of the population is white, while 90% of applications came from white consumers. 
+
+The trends highlighted by this portion of the analysis may be relevant to conversations about gentrification and cultural displacement in the city. A recent study from the National Community Reinvestment Coalition (NCRC) found that Washington, D.C. was the most gentrified city in the country by some measures, and that gentrification was accompanied by the displacement of 20,000 Black residents between 2000 and 2013.<sup>[14](#footnote14)</sup>  While the measures contained in this analysis are certainly not direct measures of gentrification or cultural displacement, they may serve as rough indicators of neighborhoods that may be at risk of experiencing these phenomena. Indeed, the NCRC’s map showing which parts of the city experienced gentrification and Black displacement appear to line up moderately well with the graph in Figure 6.<sup>[15](#footnote15)</sup> 
+
+<br>
+
+<br>
+
+## Appendix A: Filtering the Data and Constructing the Race/Ethnicity Variable
+
+For the purposes of this analysis, the raw dataset was filtered to include only the following observations:
+
+- Loans for 1-4 family dwellings (as opposed to multifamily dwellings or manufactured housing)
+- Loans for new home purchases (as opposed to refinancing or taking out a loan for home improvements)
+- Loans for under $50M (removing a handful of outliers with huge loan values)
+- Loans where the race and ethnicity of the applicant(s) are known
+  - Among observations where the race and ethnicity of the applicant(s) are known, the 4 groups included in the visualizations account for about 92% of all observations. The remaining 8% of observations are split between American Indian / Alaskan Native, Native Hawaiian or Other Pacific Islander, and Multiple Races. These observations were included in the analysis itself, but do not appear in the final visualizations.
 
 
 
@@ -138,3 +156,7 @@ Taking it a step further, I also analyze how these relationships play out geogra
 <a name="footnote12">12</a>: Rabinowitz, K. (2017, March 2). *A decade of demographic change in D.C.: Which neighborhoods have changed the most?* D.C. Policy Center. [https://www.dcpolicycenter.org/publications/demographic-change-d-c-neighborhoods/.](https://www.dcpolicycenter.org/publications/demographic-change-d-c-neighborhoods/)
 
 <a name="footnote13">13</a>: Salviati, C. (2017, August 21). *The Racial Divide in Homeownership.* Apartment List. [https://www.apartmentlist.com/research/racial-divide-homeownership.](https://www.apartmentlist.com/research/racial-divide-homeownership)
+
+<a name="footnote14">14</a>: Richardson, J., Mitchell, B., & Franco, J. (2019, March 19). *Shifting Neighborhoods: Gentrification and cultural displacement in American cities.* National Community Reinvestment Coalition. [https://ncrc.org/gentrification/.](https://ncrc.org/gentrification/)
+
+<a name="footnote15">15</a>: Ibid.
