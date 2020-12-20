@@ -1,3 +1,8 @@
+**Andy Green**  
+**12/21/2020** 
+
+*I completed this analysis as part of my final project for course PPOL 563: Data Visualization for Data Science. The code, raw data, and Tableau workbooks used to produce the visualizations can be found in the repository at the "View on GitHub" link at the top of this page.*
+
 ## Introduction
 
 The Consumer Financial Protection Bureau describes the mortgage market as “the single largest market for consumer financial products and services in the United States.”<sup>[1](#footnote1)</sup>  It is estimated that 37% of all households had at least one mortgage on their property as of 2015, as compared with 26% of households that own their home outright, and 37% that rent.<sup>[2](#footnote2)</sup>  Due to the prevalence of mortgages and the high cost of purchasing a home relative to other consumer spending, mortgages are also responsible for an outsized portion of Americans’ total household debt. The Federal Reserve Bank of New York estimates that mortgage debt accounts for about $9.8T of $14.3T in total household debt (69%), significantly eclipsing the next largest categories of student loan debt ($1.54T) and auto loan debt ($1.34T).<sup>[3](#footnote3)</sup>
@@ -6,13 +11,21 @@ In addition to their outsized role in household debt, mortgages also play a cruc
 
 Given the integral role homeownership plays in building wealth, it is notable that significant disparities exist in homeownership rates between race and ethnicity groups. Among families under 35 years old, 46% of white families own their home, as compared to 17% of Black families and 28% of Hispanic families.<sup>[6](#footnote6)</sup>  Homeownership rates increase for all race/ethnicity groups as families get older, but significant disparities persist. Among families between the ages of 35 and 54, 73% of white families own their home, as compared to 50% of Black families and 52% of Hispanic families.<sup>[7](#footnote7)</sup>  Research shows that these disparities in homeownership rates play a crucial role in contributing to the overall racial wealth gap in the United States, whereby the median white family has roughly 8x as much wealth as the median Black family and 5x as much wealth as the median Hispanic family.<sup>[8](#footnote8)</sup> 
 
-Over the course of this analysis, I explore how these disparities by race and ethnicity play out in terms of mortgage applications, focusing specifically on applications for new home purchases in Washington, D.C. in 2017. I leverage data on mortgage applications that were collected under the Home Mortgage Disclosure Act (HMDA), whereby financial institutions must collect and disclose loan-level data on mortgage applications they receive from consumers.<sup>[9](#footnote9)</sup>   This is a particularly rich data source, containing information such as the dollar value of the loan, the race/ethnicity of the applicant(s), and the outcome of the application, for the vast majority of mortgage applications submitted in the United States.  I use these data to investigate disparities in the rates at which consumers in various race/ethnicity groups apply for mortgages, the dollar value of the loans they apply for, and the frequency with which they are denied loans. (For more information on how I preprocessed the data prior to conducting these analyses, please refer to Appendix A).
+Over the course of this analysis, I explore how these disparities by race and ethnicity play out in terms of mortgage applications, focusing specifically on applications for new home purchases in Washington, D.C. in 2017. I leverage data on mortgage applications that were collected under the Home Mortgage Disclosure Act (HMDA), whereby financial institutions must collect and disclose loan-level data on mortgage applications they receive from consumers.<sup>[9](#footnote9)</sup>   This is a particularly rich data source, containing information such as the dollar value of the loan, the race/ethnicity of the applicant(s), and the outcome of the application, for the vast majority of mortgage applications submitted in the United States.<sup>[10](#footnote10)</sup>  I use these data to investigate disparities in the rates at which consumers in various race/ethnicity groups apply for mortgages, the dollar value of the loans they apply for, and the frequency with which they are denied loans. (For more information on how I preprocessed the data prior to conducting these analyses, please refer to Appendix A).
 
 Additionally, because the dataset includes information on the census tract in which the property is located, I am able to analyze the role of race and ethnicity in mortgage applications from a spatial standpoint. Specifically, I analyze how the composition of applications by race and ethnicity in any given census tract compares to the current population demographics of that tract. Such comparisons can provide additional context to some of the district-wide trends highlighted by other portions of the analysis, and they help highlight which parts of the city may be experiencing demographic changes. The findings from this portion of the analysis may be relevant to conversations about gentrification and cultural displacement in Washington, D.C.
 
 <br>
 
 ## Visualizations – Disparities by Race and Ethnicity
+
+The first portion of my analysis focuses on the rates at which consumers in various race/ethnicity groups apply for mortgages. I start by calculating the percentage of mortgage applications for new home purchases that are made by consumers in each race/ethnicity group. These percentages are then compared with demographic data on the population of Washington, D.C. by race and ethnicity,<sup>[11](#footnote11)</sup>  to identify which groups are over-represented or under-represented in mortgage applications relative to the total population. The results are shown in Figure 1.
+
+
+*Figure 1 – Disparities in Application Rates by Race and Ethnicity*
+
+
+
 
 
 
@@ -37,3 +50,7 @@ Additionally, because the dataset includes information on the census tract in wh
 <a name="footnote8">8</a>: Ibid.
 
 <a name="footnote9">9</a>: Consumer Financial Protection Bureau. *The Home Mortgage Disclosure Act.* Consumer Financial Protection Bureau. https://www.consumerfinance.gov/data-research/hmda/
+
+<a name="footnote10">10</a>: Ibid.
+
+<a name="footnote11">11</a>: Census Bureau. *Hispanic or Latino Origin by Race: American Community Survey, 2017.* Census Bureau. https://data.census.gov/cedsci/table?g=0400000US11&tid=ACSDT1Y2017.B03002&hidePreview=false. 	
