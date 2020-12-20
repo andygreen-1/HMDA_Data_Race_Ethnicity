@@ -1,7 +1,9 @@
 **Andy Green**  
-**12/21/2020** 
+**12/21/2020**
 
-*I completed this analysis as part of my final project for course PPOL 563: Data Visualization for Data Science. The code, raw data, and Tableau workbooks used to produce the visualizations can be found in the repository at the "View on GitHub" link at the top of this page.*
+*I completed this analysis as part of my final project for course PPOL 563: Data Visualization for Data Science. The code, raw data, and Tableau workbooks used to produce the visualizations can all be found in the repository at the "View on GitHub" link at the top of this page.*
+
+<br>
 
 ## Introduction
 
@@ -21,8 +23,10 @@ Additionally, because the dataset includes information on the census tract in wh
 
 The first portion of my analysis focuses on the rates at which consumers in various race/ethnicity groups apply for mortgages. I start by calculating the percentage of mortgage applications for new home purchases that are made by consumers in each race/ethnicity group. These percentages are then compared with demographic data on the population of Washington, D.C. by race and ethnicity,<sup>[11](#footnote11)</sup>  to identify which groups are over-represented or under-represented in mortgage applications relative to the total population. The results are shown in Figure 1.
 
+<br>
 
 *Figure 1 – Disparities in Application Rates by Race and Ethnicity*
+
 
 
 
