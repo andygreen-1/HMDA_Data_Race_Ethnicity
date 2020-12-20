@@ -1,37 +1,10 @@
-## Welcome to GitHub Pages
+## Introduction
 
-You can use the [editor on GitHub](https://github.com/andygreen-1/HMDA_Data_Race_Ethnicity/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+The Consumer Financial Protection Bureau describes the mortgage market as “the single largest market for consumer financial products and services in the United States.”[^1]  It is estimated that 37% of all households had at least one mortgage on their property as of 2015, as compared with 26% of households that own their home outright, and 37% that rent.  Due to the prevalence of mortgages and the high cost of purchasing a home relative to other consumer spending, mortgages are also responsible for an outsized portion of Americans’ total household debt. The Federal Reserve Bank of New York estimates that mortgage debt accounts for about $9.8T of $14.3T in total household debt (69%), significantly eclipsing the next largest categories of student loan debt ($1.54T) and auto loan debt ($1.34T).
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/andygreen-1/HMDA_Data_Race_Ethnicity/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+[^1] Consumer Financial Protection Bureau. (2019, January). Ability-to-Repay and Qualified Mortgage Rule Assessment Report. Consumer Financial Protection Bureau. https://files.consumerfinance.gov/f/documents/cfpb_ability-to-repay-qualified-mortgage_assessment-report.pdf. 	
