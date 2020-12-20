@@ -67,6 +67,8 @@ Taking it a step further, I also investigate the reasons why consumers were deni
 
 <iframe seamless frameborder=“0” src=“https://public.tableau.com/views/treemap_denial_reasons_16083227565410/Dashboard1?:embed=yes&:display_count=yes&:showVizHome=no” width = ‘650’ height = ‘450’ scrolling=‘yes’ ></iframe>
 
+<iframe seamless frameborder="0" src="https://public.tableau.com/views/NTSBAnalysis/Dashboard1?:embed=yes&:display_count=yes&:showVizHome=no" width = '650' height = '450' scrolling='yes' ></iframe>
+
 
 
 
