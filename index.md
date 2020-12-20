@@ -61,9 +61,9 @@ Taking it a step further, I also investigate the reasons why consumers were deni
 
 *Figure 4 – Breakdown of Denial Reasons by Race/Ethnicity*
 
-<br>
-
 <iframe seamless frameborder="0" src="https://public.tableau.com/views/treemap_denial_reasons_16083227565410/Dashboard1?:embed=yes&:display_count=yes&:showVizHome=no" width = '1000' height = '900' scrolling='no' ></iframe>
+
+[*If there any issues with rendering the above dashboard on your screen, please use this link to view it on Tableau Public.*](https://public.tableau.com/views/treemap_denial_reasons_16083227565410/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link)
 
 
 
