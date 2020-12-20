@@ -27,7 +27,9 @@ The first portion of my analysis focuses on the rates at which consumers in vari
 
 *Figure 1 – Disparities in Application Rates by Race and Ethnicity*
 
-[![](/race_ethnicity_applications.png)](/race_ethnicity_applications.png)
+![](/race_ethnicity_applications.png)
+
+[![](/race_ethnicity_applications.png)](https://github.com/andygreen-1/HMDA_Data_Race_Ethnicity/blob/gh-pages/race_ethnicity_applications.png)
 
 
 
