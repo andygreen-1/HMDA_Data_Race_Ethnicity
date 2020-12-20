@@ -37,7 +37,7 @@ The first portion of my analysis focuses on the rates at which consumers in vari
 
 ## References
 
-<a name="footnote1">1</a>: Consumer Financial Protection Bureau. (2019, January). *Ability-to-Repay and Qualified Mortgage Rule Assessment Report.* Consumer Financial Protection Bureau. https://files.consumerfinance.gov/f/documents/cfpb_ability-to-repay-qualified-mortgage_assessment-report.pdf. 	
+<a name="footnote1">1</a>: Consumer Financial Protection Bureau. (2019, January). *Ability-to-Repay and Qualified Mortgage Rule Assessment Report.* Consumer Financial Protection Bureau. [https://files.consumerfinance.gov/f/documents/cfpb_ability-to-repay-qualified-mortgage_assessment-report.pdf.](https://files.consumerfinance.gov/f/documents/cfpb_ability-to-repay-qualified-mortgage_assessment-report.pdf)
 
 <a name="footnote2">2</a>: Levitin, A. J. (2018). *Consumer finance markets and regulation.* Wolters Kluwer.  
 
