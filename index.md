@@ -43,6 +43,31 @@ The next portion of my analysis focuses on disparities in the dollar value of lo
 [![](/race_ethnicity_loan_amount.png)](https://github.com/andygreen-1/HMDA_Data_Race_Ethnicity/blob/gh-pages/race_ethnicity_loan_amount.png)
 
 
+The plot shows significant disparities in the dollar value of loans by race and ethnicity. White consumers have the highest median loan value ($499K), followed by Asian consumers ($383K), Hispanic consumers ($352K), and Black consumers ($320K). Additionally, the box plot shows a significant number of applications for loans valued between $1M and $2M for white consumers, but relatively few loans for other race/ethnicity groups in this range.
+
+The next portion of my analysis investigates disparities in the rates at which consumers in different race/ethnicity groups have their applications denied. Figure 3 shows the denial rates for each of the race/ethnicity groups.
+
+<br>
+
+*Figure 3 – Denial Rates by Race/Ethnicity*
+
+[![](/race_ethnicity_denials.png)](https://github.com/andygreen-1/HMDA_Data_Race_Ethnicity/blob/gh-pages/race_ethnicity_denials.png)
+
+
+The chart shows that Black and Hispanic consumers are denied at significantly higher rates than white and Asian consumers. Among all applications submitted by Black consumers, 11.2% were denied, while 9% of all applications submitted by Hispanic consumers were denied. On the other hand, only 3.9% of white consumers’ applications and 5.9% of Asian consumers’ applications were denied.
+
+Taking it a step further, I also investigate the reasons why consumers were denied on their mortgage applications, and whether these reasons may differ by race/ethnicity group. Figure 4 shows the breakdown of the reasons why applicants were denied loans for each race/ethnicity group.
+
+
+*Figure 4 – Breakdown of Denial Reasons by Race/Ethnicity*
+
+<br>
+
+<div class='tableauPlaceholder' id='viz1608477802412' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;tr&#47;treemap_denial_reasons_16083227565410&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='treemap_denial_reasons_16083227565410&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;tr&#47;treemap_denial_reasons_16083227565410&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1608477802412');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+
+
+
+
 
 
 
