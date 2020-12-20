@@ -41,20 +41,20 @@ The first portion of my analysis focuses on the rates at which consumers in vari
 
 <a name="footnote2">2</a>: Levitin, A. J. (2018). *Consumer finance markets and regulation.* Wolters Kluwer.  
 
-<a name="footnote3">3</a>: Federal Reserve Bank of New York. (2020, August 6). *Total Household Debt Decreased in Q2 2020, Marking First Decline Since 2014.* Federal Reserve Bank of New York. https://www.newyorkfed.org/newsevents/news/research/2020/20200806. 	
+<a name="footnote3">3</a>: Federal Reserve Bank of New York. (2020, August 6). *Total Household Debt Decreased in Q2 2020, Marking First Decline Since 2014.* Federal Reserve Bank of New York. [https://www.newyorkfed.org/newsevents/news/research/2020/20200806.](https://www.newyorkfed.org/newsevents/news/research/2020/20200806)
 
-<a name="footnote4">4</a>: Bricker, J., Moore, K. B., & Thompson, J. P. (2019). Trends in Household Portfolio Composition. *Finance and Economics Discussion Series, 2019(069)*, 1–51. https://doi.org/10.17016/feds.2019.069 	
+<a name="footnote4">4</a>: Bricker, J., Moore, K. B., & Thompson, J. P. (2019). Trends in Household Portfolio Composition. *Finance and Economics Discussion Series, 2019(069)*, 1–51. [https://doi.org/10.17016/feds.2019.069.](https://doi.org/10.17016/feds.2019.069)
 
-<a name="footnote5">5</a>: Goodman, L. S., & Mayer, C. (2018). Homeownership and the American Dream. *Journal of Economic Perspectives, 32(1)*, 31–58. https://doi.org/10.1257/jep.32.1.31 
+<a name="footnote5">5</a>: Goodman, L. S., & Mayer, C. (2018). Homeownership and the American Dream. *Journal of Economic Perspectives, 32(1)*, 31–58. [https://doi.org/10.1257/jep.32.1.31.](https://doi.org/10.1257/jep.32.1.31)
 
-<a name="footnote6">6</a>: Bhutta, N., Chang, A. C., Dettling, L. J., & Hsu, J. W. (2020, September 28). *Disparities in Wealth by Race and Ethnicity in the 2019 Survey of Consumer Finances.* Board of Governors of the Federal Reserve System. https://www.federalreserve.gov/econres/notes/feds-notes/disparities-in-wealth-by-race-and-ethnicity-in-the-2019-survey-of-consumer-finances-20200928.htm.	
+<a name="footnote6">6</a>: Bhutta, N., Chang, A. C., Dettling, L. J., & Hsu, J. W. (2020, September 28). *Disparities in Wealth by Race and Ethnicity in the 2019 Survey of Consumer Finances.* Board of Governors of the Federal Reserve System. [https://www.federalreserve.gov/econres/notes/feds-notes/disparities-in-wealth-by-race-and-ethnicity-in-the-2019-survey-of-consumer-finances-20200928.htm.](https://www.federalreserve.gov/econres/notes/feds-notes/disparities-in-wealth-by-race-and-ethnicity-in-the-2019-survey-of-consumer-finances-20200928.htm)
 
 <a name="footnote7">7</a>: Ibid.
 
 <a name="footnote8">8</a>: Ibid.
 
-<a name="footnote9">9</a>: Consumer Financial Protection Bureau. *The Home Mortgage Disclosure Act.* Consumer Financial Protection Bureau. https://www.consumerfinance.gov/data-research/hmda/
+<a name="footnote9">9</a>: Consumer Financial Protection Bureau. *The Home Mortgage Disclosure Act.* Consumer Financial Protection Bureau. [https://www.consumerfinance.gov/data-research/hmda/.](https://www.consumerfinance.gov/data-research/hmda/)
 
 <a name="footnote10">10</a>: Ibid.
 
-<a name="footnote11">11</a>: Census Bureau. *Hispanic or Latino Origin by Race: American Community Survey, 2017.* Census Bureau. https://data.census.gov/cedsci/table?g=0400000US11&tid=ACSDT1Y2017.B03002&hidePreview=false. 	
+<a name="footnote11">11</a>: Census Bureau. *Hispanic or Latino Origin by Race: American Community Survey, 2017.* Census Bureau. [https://data.census.gov/cedsci/table?g=0400000US11&tid=ACSDT1Y2017.B03002&hidePreview=false.](https://data.census.gov/cedsci/table?g=0400000US11&tid=ACSDT1Y2017.B03002&hidePreview=false.)
