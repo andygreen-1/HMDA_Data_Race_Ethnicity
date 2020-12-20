@@ -117,17 +117,17 @@ For the purposes of this analysis, the raw dataset was filtered to include only 
 - Loans for under $50M (removing a handful of outliers with huge loan values)
 - Loans where the race and ethnicity of the applicant(s) are known
   - Among observations where the race and ethnicity of the applicant(s) are known, the 4 groups included in the visualizations account for about 92% of all observations. The remaining 8% of observations are split between American Indian / Alaskan Native, Native Hawaiian or Other Pacific Islander, and Multiple Races. These observations were included in the analysis itself, but do not appear in the final visualizations.
+  
+  
+The raw dataset contains one variable with data on ethnicity and up to five variables with data on race for each applicant. Given that many loan applications also include a co-applicant – in which case the same race and ethnicity variables exist for the co-applicant – there is value in creating a single race/ethnicity variable for each mortgage application. Here are the steps that I followed to do so:
 
+- Consolidated the five race variables for applicant/co-applicant: anyone with more than one race value listed was assigned to a new group, “Multiple races”.
+- Condensed race and ethnicity fields for applicant/co-applicant: these two concepts were combined into one variable (e.g., Hispanic; white, non-Hispanic; Black, non-Hispanic; etc.)
+- Combined the above variables into one variable for the applicant and co-applicant together: if an applicant either a) did not have a co-applicant, or b) the co-applicant had the same race/ethnicity value as the applicant, then the applicant’s race/ethnicity value was used. If the applicant and co-applicant had different race/ethnicity values, that observation was coded as “Multiple races”.
 
+<br>
 
-
-
-
-
-
-
-
-
+<br>
 
 ## References
 
