@@ -1,7 +1,7 @@
 **Andy Green**  
 **12/21/2020**
 
-*I completed this analysis as part of my final project for course PPOL 563: Data Visualization for Data Science. The code, raw data, and Tableau workbooks used to produce the visualizations on this page can all be found in the repository at the "View on GitHub" link above.*
+*I completed this analysis as part of my final project for course PPOL 563: Data Visualization for Data Science, at Georgetown University in Fall 2020. The code, raw data, and Tableau workbooks used to produce the visualizations on this page can all be found in the repository at the "View on GitHub" link above.*
 
 <br>
 
@@ -28,6 +28,21 @@ The first portion of my analysis focuses on the rates at which consumers in vari
 *Figure 1 – Disparities in Application Rates by Race and Ethnicity*
 
 [![](/race_ethnicity_applications.png)](https://github.com/andygreen-1/HMDA_Data_Race_Ethnicity/blob/gh-pages/race_ethnicity_applications.png)
+
+
+The graph shows significant disparities in application rates by race and ethnicity. While 45% of Washington D.C.’s population identifies as Black, only 19% of applications were from Black consumers. Hispanic consumers were also under-represented, making up only 6% of applications, but 11% of the total population. On the other hand, 60% of applications were from white consumers, despite only 37% of the population identifying as white. 
+
+Of course, one year of data on mortgage applications is not necessarily a perfect proxy for overall homeownership, as it doesn’t take into account any preexisting differences in homeownership among different race/ethnicity groups. Since Washington, D.C.’s population growth in recent years has been driven by an influx of white residents,<sup>[12](#footnote12)</sup>  it is possible that many Black residents already have mortgages or own their homes outright, and the disparities we see in mortgage applications in 2017 are more reflective of these demographic changes. However, the fact that the results in this analysis comport with what we know about disparities in homeownership rates – both nationally and in Washington, D.C. specifically<sup>[13](#footnote13)</sup>  – suggests that the disparities highlighted by Figure 1 may be significant.
+
+The next portion of my analysis focuses on disparities in the dollar value of loans that consumers of different race/ethnicity groups have applied for. Figure 2 uses a box plot to help visualize these disparities. For each group, the bottom and top of the box indicate the values at the 25th and 75th percentile, respectively, while the line in the middle of the box represents the median value. The points located above the vertical line extending from each box represent values that are significantly larger than the bulk of the distribution for that group.
+
+<br>
+
+*Figure 2 – Box Plot of Loan Amount by Race/Ethnicity*
+
+[![](/race_ethnicity_loan_amount.png)](https://github.com/andygreen-1/HMDA_Data_Race_Ethnicity/blob/gh-pages/race_ethnicity_loan_amount.png)
+
+
 
 
 
@@ -58,3 +73,7 @@ The first portion of my analysis focuses on the rates at which consumers in vari
 <a name="footnote10">10</a>: Ibid.
 
 <a name="footnote11">11</a>: Census Bureau. *Hispanic or Latino Origin by Race: American Community Survey, 2017.* Census Bureau. [https://data.census.gov/cedsci/table?g=0400000US11&tid=ACSDT1Y2017.B03002&hidePreview=false.](https://data.census.gov/cedsci/table?g=0400000US11&tid=ACSDT1Y2017.B03002&hidePreview=false.)
+
+<a name="footnote12">12</a>: Rabinowitz, K. (2017, March 2). *A decade of demographic change in D.C.: Which neighborhoods have changed the most?* D.C. Policy Center. [https://www.dcpolicycenter.org/publications/demographic-change-d-c-neighborhoods/.](https://www.dcpolicycenter.org/publications/demographic-change-d-c-neighborhoods/)
+
+<a name="footnote13">13</a>: Salviati, C. (2017, August 21). *The Racial Divide in Homeownership.* Apartment List. [https://www.apartmentlist.com/research/racial-divide-homeownership.](https://www.apartmentlist.com/research/racial-divide-homeownership)
