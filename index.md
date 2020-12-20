@@ -86,6 +86,19 @@ If you live in Washington, D.C. and are curious where your census tract falls on
 
 <iframe seamless frameborder="0" src="https://public.tableau.com/views/CensusTractApplicationsbyRaceEthnicity/Dashboard1?:embed=yes&:display_count=yes&:showVizHome=no" width = '1000' height = '900' scrolling='no' ></iframe>
 
+*If there any issues with rendering the above dashboard on your screen, please use* [*this link*](https://public.tableau.com/views/CensusTractApplicationsbyRaceEthnicity/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link) *to view it directly on Tableau Public.*
+
+There are two main insights that can be gathered from the graph. First, the graph shows that white consumers make up a majority of applications in most census tracts in Washington, D.C. This is indicated visually by the fact that most points are located above the 50% value on the y-axis. This finding also tracks with the top-line stat that white consumers accounted for 60% of all applications (as indicated by Figure 1). Second, the graph shows that applications by white consumers only begin to drop off in census tracts with a very high percentage of non-white residents. This is indicated visually by the steep drop-off in the (theoretical) trend line along the right side of the graph.
+
+Taking it a step further, I also analyze how these relationships play out geographically across Washington, D.C. The map in Figure 6 contains three different metrics, and it is color-coded according to which of the three is selected in the dropdown menu on the right. The map shows which tracts have the highest percentage of white applicants, which tracts have the highest percentage of white residents, and which tracts have the largest discrepancies between the two. The map also contains the same functionality for highlighting a given census tract that was present in the earlier dashboard.
+
+<br>
+
+*Figure 6 – Map of Population Demographics and Applicant Demographics by Census Tract*
+
+<iframe seamless frameborder="0" src="https://public.tableau.com/views/DCMapMortgageApplicationsbyRaceEthnicity/Dashboard1?:embed=yes&:display_count=yes&:showVizHome=no" width = '1000' height = '900' scrolling='no' ></iframe>
+
+
 
 
 
