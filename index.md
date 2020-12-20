@@ -1,7 +1,7 @@
 **Andy Green**  
 **12/21/2020**
 
-*I completed this analysis as part of my final project for course PPOL 563: Data Visualization for Data Science. The code, raw data, and Tableau workbooks used to produce the visualizations can all be found in the repository at the "View on GitHub" link at the top of this page.*
+*I completed this analysis as part of my final project for course PPOL 563: Data Visualization for Data Science. The code, raw data, and Tableau workbooks used to produce the visualizations on this page can all be found in the repository at the "View on GitHub" link above.*
 
 <br>
 
