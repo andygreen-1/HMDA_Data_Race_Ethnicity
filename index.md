@@ -66,6 +66,28 @@ Taking it a step further, I also investigate the reasons why consumers were deni
 
 *If there any issues with rendering the above dashboard on your screen, please use* [*this link*](https://public.tableau.com/views/treemap_denial_reasons_16083227565410/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link) *to view it directly on Tableau Public.*
 
+<br>
+
+The visualization shows that denial reasons tend to be relatively similar across race/ethnicity groups, with a few exceptions. For Black, white, and Asian consumers, collateral and debt-to-income ratio are the two largest categories. For Hispanic consumers, collateral is the second largest category, while the “Other” category is the largest. It also seems as though credit history is a significant factor for Black and Hispanic consumers (16% for each), while it’s less prevalent for white (8%) and Asian consumers (6%).
+
+It’s worth noting that the sample size for this portion of the analysis is relatively small. In addition to the fact that we’re now working with a small percentage of all applications (i.e., just the ones that were denied), the financial institutions are also not required to provide their reason for denial in the HMDA data, and many choose not to do so. As a result, further analysis should be done with a larger sample size before making any concrete conclusions on this particular portion of the analysis.
+
+<br>
+
+## Visualizations – Spatial Analysis
+
+Because the dataset includes information on the location of each prospective home purchase, I can also investigate the role of race and ethnicity in mortgage applications from a spatial standpoint. I begin by analyzing how the composition of applications by race/ethnicity in a geographic area compares to the existing population demographics of that area. Figure 5 explores this relationship at the census tract level. Specifically, it shows the relationship between the percentage of a census tract’s population that is non-white (i.e., all groups except for white, non-Hispanic; shown on the x-axis), and the percentage of applications from white consumers (shown on the y-axis). Using the dropdown menu on the right, you can change the dashboard such that the y-axis shows the percentage of applications from Black consumers, as opposed to white consumers; the x-axis measure does not change.
+
+If you live in Washington, D.C. and are curious where your census tract falls on the graph, the dashboard contains functionality to help you find it. You can start by using [this handy tool](https://geocoding.geo.census.gov/geocoder/geographies/address?form) to look up the census tract number associated with your address. After entering your address in the tool, you can scroll down to the “Census Tracts” section and look for the number listed next to “BASENAME”. Then, you can enter this number in the “Highlight Census Tract” field on the right side of the dashboard to locate your tract.
+
+<br>
+
+*Figure 5 – Relationship Between Population Demographics and Applicant Demographics by Census Tract*
+
+<iframe seamless frameborder="0" src="https://public.tableau.com/views/CensusTractApplicationsbyRaceEthnicity/Dashboard1?:embed=yes&:display_count=yes&:showVizHome=no" width = '1000' height = '900' scrolling='no' ></iframe>
+
+
+
 
 
 
