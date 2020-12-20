@@ -58,12 +58,13 @@ The chart shows that Black and Hispanic consumers are denied at significantly hi
 
 Taking it a step further, I also investigate the reasons why consumers were denied on their mortgage applications, and whether these reasons may differ by race/ethnicity group. Figure 4 shows the breakdown of the reasons why applicants were denied loans for each race/ethnicity group.
 
+<br>
 
 *Figure 4 – Breakdown of Denial Reasons by Race/Ethnicity*
 
 <iframe seamless frameborder="0" src="https://public.tableau.com/views/treemap_denial_reasons_16083227565410/Dashboard1?:embed=yes&:display_count=yes&:showVizHome=no" width = '1000' height = '900' scrolling='no' ></iframe>
 
-[*If there any issues with rendering the above dashboard on your screen, please use this link to view it on Tableau Public.*](https://public.tableau.com/views/treemap_denial_reasons_16083227565410/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link)
+*If there any issues with rendering the above dashboard on your screen, please use* [*this link*](https://public.tableau.com/views/treemap_denial_reasons_16083227565410/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link) *to view it directly on Tableau Public.*
 
 
 
