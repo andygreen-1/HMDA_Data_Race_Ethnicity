@@ -64,7 +64,7 @@ Taking it a step further, I also investigate the reasons why consumers were deni
 
 <iframe seamless frameborder="0" src="https://public.tableau.com/views/treemap_denial_reasons_16083227565410/Dashboard1?:embed=yes&:display_count=yes&:showVizHome=no" width = '1000' height = '900' scrolling='no' ></iframe>
 
-*If there any issues with rendering the above dashboard on your screen, please use* [*this link*](https://public.tableau.com/views/treemap_denial_reasons_16083227565410/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link) *to view it directly on Tableau Public.*
+*If there any issues with rendering the above dashboard on your screen, please try refreshing the page, or use* [*this link*](https://public.tableau.com/views/treemap_denial_reasons_16083227565410/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link) *to view it directly on Tableau Public.*
 
 <br>
 
@@ -86,7 +86,7 @@ If you live in Washington, D.C. and are curious where your census tract falls on
 
 <iframe seamless frameborder="0" src="https://public.tableau.com/views/CensusTractApplicationsbyRaceEthnicity/Dashboard1?:embed=yes&:display_count=yes&:showVizHome=no" width = '1000' height = '900' scrolling='no' ></iframe>
 
-*If there any issues with rendering the above dashboard on your screen, please use* [*this link*](https://public.tableau.com/views/CensusTractApplicationsbyRaceEthnicity/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link) *to view it directly on Tableau Public.*
+*If there any issues with rendering the above dashboard on your screen, please try refreshing the page, or use* [*this link*](https://public.tableau.com/views/CensusTractApplicationsbyRaceEthnicity/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link) *to view it directly on Tableau Public.*
 
 <br>
 
@@ -100,7 +100,7 @@ Taking it a step further, I also analyze how these relationships play out geogra
 
 <iframe seamless frameborder="0" src="https://public.tableau.com/views/DCMapMortgageApplicationsbyRaceEthnicity/Dashboard1?:embed=yes&:display_count=yes&:showVizHome=no" width = '1000' height = '900' scrolling='no' ></iframe>
 
-*If there any issues with rendering the above dashboard on your screen, please use* [*this link*](https://public.tableau.com/views/DCMapMortgageApplicationsbyRaceEthnicity/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link) *to view it directly on Tableau Public.*
+*If there any issues with rendering the above dashboard on your screen, please try refreshing the page, or use* [*this link*](https://public.tableau.com/views/DCMapMortgageApplicationsbyRaceEthnicity/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link) *to view it directly on Tableau Public.*
 
 <br>
 
