@@ -1,0 +1,32 @@
+"","applicants_combined_race_ethnicity","denial_reason_name_1","n","percentage"
+"1","Asian","Collateral",7,0.2
+"2","Asian","Credit application incomplete",7,0.2
+"3","Asian","Credit history",2,0.0571428571428571
+"4","Asian","Debt-to-income ratio",9,0.257142857142857
+"5","Asian","Employment history",2,0.0571428571428571
+"6","Asian","Insufficient cash (downpayment, closing costs)",1,0.0285714285714286
+"7","Asian","Other",6,0.171428571428571
+"8","Asian","Unverifiable information",1,0.0285714285714286
+"9","Black or African American","Collateral",47,0.265536723163842
+"10","Black or African American","Credit application incomplete",18,0.101694915254237
+"11","Black or African American","Credit history",28,0.15819209039548
+"12","Black or African American","Debt-to-income ratio",40,0.225988700564972
+"13","Black or African American","Employment history",5,0.0282485875706215
+"14","Black or African American","Insufficient cash (downpayment, closing costs)",10,0.0564971751412429
+"15","Black or African American","Other",19,0.107344632768362
+"16","Black or African American","Unverifiable information",10,0.0564971751412429
+"17","Hispanic or Latino","Collateral",9,0.204545454545455
+"18","Hispanic or Latino","Credit application incomplete",8,0.181818181818182
+"19","Hispanic or Latino","Credit history",7,0.159090909090909
+"20","Hispanic or Latino","Debt-to-income ratio",5,0.113636363636364
+"21","Hispanic or Latino","Insufficient cash (downpayment, closing costs)",3,0.0681818181818182
+"22","Hispanic or Latino","Other",11,0.25
+"23","Hispanic or Latino","Unverifiable information",1,0.0227272727272727
+"24","White","Collateral",56,0.288659793814433
+"25","White","Credit application incomplete",38,0.195876288659794
+"26","White","Credit history",15,0.077319587628866
+"27","White","Debt-to-income ratio",47,0.242268041237113
+"28","White","Employment history",6,0.0309278350515464
+"29","White","Insufficient cash (downpayment, closing costs)",5,0.0257731958762887
+"30","White","Other",19,0.0979381443298969
+"31","White","Unverifiable information",8,0.0412371134020619

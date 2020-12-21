@@ -1,0 +1,814 @@
+---
+title: "DC Mortgage Data 2017"
+author: "Andy Green"
+date: "9/25/2020"
+output: pdf_document
+---
+
+## Section 1: Set-up Tasks
+
+```{r}
+## Importing packages
+library(tidyverse)
+library(scales)
+```
+
+```{r}
+## Read in the data
+data <- read.csv("Data_Inputs/hmda_2017_dc_all-records_labels.csv", stringsAsFactors = FALSE)
+
+## Convert to tibble
+data <- as_tibble(data)
+
+## Check it out
+data
+```
+
+```{r}
+## Narrowing down to just columns I care about
+data <- data %>%
+    select(respondent_id,property_type_name,loan_purpose_name,owner_occupancy_name,loan_amount_000s,preapproval_name,
+           action_taken_name,census_tract_number,applicant_ethnicity_name,co_applicant_ethnicity_name,applicant_race_name_1,
+           applicant_race_name_2,co_applicant_race_name_1,co_applicant_race_name_2,applicant_sex_name,co_applicant_sex_name,
+           applicant_income_000s,denial_reason_name_1,denial_reason_name_2,denial_reason_name_3,lien_status_name,population,
+           minority_population,tract_to_msamd_income,number_of_owner_occupied_units,number_of_1_to_4_family_units)
+
+data
+```
+
+## Section 2: Exploratory Data Analysis and Clean-up
+
+```{r}
+## Making a scatter plot of income and loan amounts
+plot1 <- ggplot(data = data, aes(x = applicant_income_000s, y = loan_amount_000s)) +
+    geom_point(alpha = 0.4, color = "Blue") +
+    ggtitle("Applicant Income and Loan Amount\n") +
+    xlab("\nApplicant Income (Thousands)") +
+    ylab("Loan Amount (Thousands)\n")
+
+plot1 + scale_x_continuous(labels = comma) + scale_y_continuous(labels = comma)
+```
+
+```{r}
+## Remove outliers > $50M
+data <- data %>%
+    filter(loan_amount_000s < 50000)
+
+data
+## note that we're now at 30,906 observations rather than 30,927
+```
+
+```{r}
+## Repeat earlier graph w/o outliers
+plot2 <- ggplot(data = data, aes(x = applicant_income_000s, y = loan_amount_000s)) +
+    geom_point(alpha = 0.4, color = "Blue") +
+    ylim(0,7500) +
+    ggtitle("Applicant Income and Loan Amount\n") +
+    xlab("\nApplicant Income (Thousands)") +
+    ylab("Loan Amount (Thousands)\n")
+
+plot2
+```
+
+
+```{r}
+## Summarize loan amount by property type
+property_type_1 <- data %>%
+  group_by(property_type_name) %>%
+  summarize(mean_loan_amount_000s = round(mean(loan_amount_000s)))
+
+## Count of property types
+property_type_2 <- data %>%
+  group_by(property_type_name) %>%
+  count()
+
+## Merging together
+property_type <- merge(property_type_1,property_type_2)
+property_type$property_type_name[property_type$property_type_name == "One-to-four family dwelling (other than manufactured housing)"] <- "1-4 family dwelling"
+property_type
+```
+
+```{r}
+## Histogram
+ggplot(data = property_type, aes(x = property_type_name, y = n)) + 
+    geom_col(fill = "skyblue3") +
+    geom_text(aes(label = n), size = 4, vjust= -0.5) +
+    ylim(0,32000) +
+    ggtitle("Number of Loans by Property Type\n") +
+    xlab("\nProperty Type") +
+    ylab("Number of Loans\n")
+```
+
+
+```{r}
+## Making a simple bar chart to show disparities
+ggplot(data = property_type, aes(x = property_type_name, y = mean_loan_amount_000s)) +
+    geom_col(fill = "skyblue3") +
+    geom_text(aes(label = mean_loan_amount_000s), size = 3.5, vjust= -0.5) +
+    ylim(0,5000) +
+    ggtitle("Average Loan Amount by Property Type\n") +
+    xlab("\nProperty Type") +
+    ylab("Average Loan Amount (Thousands)\n")
+```
+
+```{r}
+## Dropping to just 1-4 family dwellings
+data <- data %>%
+    filter(property_type_name == "One-to-four family dwelling (other than manufactured housing)")
+
+data
+## note that we're now at 30,598 rows
+```
+
+```{r}
+## Summarize loan amount by owner occupancy
+owner_occupancy_1 <- data %>%
+  group_by(owner_occupancy_name) %>%
+  summarize(mean_loan_amount_000s = round(mean(loan_amount_000s)))
+
+## Count of property types
+owner_occupancy_2 <- data %>%
+  group_by(owner_occupancy_name) %>%
+  count()
+
+## Merging together
+owner_occupancy <- merge(owner_occupancy_1,owner_occupancy_2)
+owner_occupancy
+```
+
+```{r}
+## Summarize loan amount by loan purpose
+loan_purpose_1 <- data %>%
+  group_by(loan_purpose_name) %>%
+  summarize(mean_loan_amount_000s = round(mean(loan_amount_000s)))
+
+## Count of property types
+loan_purpose_2 <- data %>%
+  group_by(loan_purpose_name) %>%
+  count()
+
+## Merging together
+loan_purpose <- merge(loan_purpose_1,loan_purpose_2)
+loan_purpose
+```
+
+```{r}
+## Histogram
+ggplot(data = loan_purpose, aes(x = loan_purpose_name, y = n)) + 
+    geom_col(fill = "skyblue3") +
+    geom_text(aes(label = n), size = 4, vjust= -0.5) +
+    ylim(0,16000) +
+    ggtitle("Number of Loans by Loan Purpose\n") +
+    xlab("\nLoan Purpose") +
+    ylab("Number of Loans\n")
+```
+
+```{r}
+## Making a simple bar chart to show disparities
+ggplot(data = loan_purpose, aes(x = loan_purpose_name, y = mean_loan_amount_000s)) +
+    geom_col(fill = "skyblue3") +
+    geom_text(aes(label = mean_loan_amount_000s), size = 3.5, vjust= -0.5) +
+    ylim(0,600) +
+    ggtitle("Average Loan Amount by Loan Purpose\n") +
+    xlab("\nLoan Purpose") +
+    ylab("Average Loan Amount (Thousands)\n")
+```
+
+## Section 3: Condensing the Various Race/Ethnicity Fields to One Measure per Application
+
+```{r}
+## Look at summaries for race/ethnicity variables
+as.data.frame(table(data$applicant_ethnicity_name))
+as.data.frame(table(data$applicant_race_name_1))
+as.data.frame(table(data$applicant_race_name_2))
+```
+
+
+```{r}
+## Condensing race fields to one measure
+data$applicant_race_combined <- ifelse(data$applicant_race_name_2 == "",data$applicant_race_name_1,"Multiple Races")
+
+as.data.frame(table(data$applicant_race_combined))
+```
+
+```{r}
+## Condensing race and ethnicity fields to one measure (long)
+data$applicant_race_ethnicity_long <- paste(data$applicant_ethnicity_name,data$applicant_race_combined, sep = " / ")
+
+as.data.frame(table(data$applicant_race_ethnicity_long))
+```
+
+```{r}
+## Condensing race and ethnicity fields to one measure
+data$applicant_race_ethnicity <- ifelse(data$applicant_ethnicity_name == "Hispanic or Latino", data$applicant_ethnicity_name,data$applicant_race_combined)
+
+as.data.frame(table(data$applicant_race_ethnicity))
+```
+
+```{r}
+## Cleaning up some of the categories above
+data$applicant_race_ethnicity[data$applicant_race_ethnicity == "Information not provided by applicant in mail, Internet, or telephone application"] <- "Unknown"
+data$applicant_race_ethnicity[data$applicant_race_ethnicity == "Not applicable"] <- "Unknown"
+
+as.data.frame(table(data$applicant_race_ethnicity))
+```
+
+```{r}
+## Look at summaries for race/ethnicity variables for co-applicant
+as.data.frame(table(data$co_applicant_ethnicity_name))
+as.data.frame(table(data$co_applicant_race_name_1))
+as.data.frame(table(data$co_applicant_race_name_2))
+```
+
+```{r}
+## Condensing race fields to one measure for co-applicant
+data$co_applicant_race_combined <- ifelse(data$co_applicant_race_name_2 == "",data$co_applicant_race_name_1,"Multiple Races")
+
+as.data.frame(table(data$co_applicant_race_combined))
+```
+
+```{r}
+## Condensing race and ethnicity fields to one measure for co-applicant (long)
+data$co_applicant_race_ethnicity_long <- paste(data$co_applicant_ethnicity_name,data$co_applicant_race_combined, sep = " / ")
+
+as.data.frame(table(data$co_applicant_race_ethnicity_long))
+```
+
+```{r}
+## Condensing race and ethnicity fields to one measure
+data$co_applicant_race_ethnicity <- ifelse(data$co_applicant_ethnicity_name == "Hispanic or Latino", data$co_applicant_ethnicity_name,data$co_applicant_race_combined)
+
+as.data.frame(table(data$co_applicant_race_ethnicity))
+```
+
+```{r}
+## Cleaning up some of the categories above
+data$co_applicant_race_ethnicity[data$co_applicant_race_ethnicity == "Information not provided by applicant in mail, Internet, or telephone application"] <- "Unknown"
+data$co_applicant_race_ethnicity[data$co_applicant_race_ethnicity == "Not applicable"] <- "Unknown"
+
+as.data.frame(table(data$co_applicant_race_ethnicity))
+```
+
+```{r}
+## Creating a combined applicants column for race and ethnicity (long)
+data$applicants_combined_race_ethnicity_long <- paste(data$applicant_race_ethnicity,data$co_applicant_race_ethnicity, sep = " / ")
+
+as.data.frame(table(data$applicants_combined_race_ethnicity_long))
+```
+
+```{r}
+## Creating a combined applicants column for race and ethnicity
+data$applicants_combined_race_ethnicity <- ifelse(data$co_applicant_race_ethnicity == "No co-applicant", data$applicant_race_ethnicity, ifelse(data$applicant_race_ethnicity == data$co_applicant_race_ethnicity, data$applicant_race_ethnicity, ifelse(data$applicant_race_ethnicity == "Unknown", "Unknown", ifelse(data$co_applicant_race_ethnicity == "Unknown", "Unknown", "Multiple Races"))))
+
+as.data.frame(table(data$applicant_race_name_1))
+as.data.frame(table(data$applicant_race_ethnicity))
+as.data.frame(table(data$applicants_combined_race_ethnicity))
+```
+
+## Section 4: Condensing Sex Fields to One Measure per Application
+
+```{r}
+## Look at summaries for sex variables
+as.data.frame(table(data$applicant_sex_name))
+as.data.frame(table(data$co_applicant_sex_name))
+```
+
+```{r}
+## Cleaning up extraneous values
+data$applicant_sex_name[data$applicant_sex_name == "Information not provided by applicant in mail, Internet, or telephone application"] <- "Unknown"
+data$applicant_sex_name[data$applicant_sex_name == "Not applicable"] <- "Unknown"
+
+data$co_applicant_sex_name[data$co_applicant_sex_name == "Information not provided by applicant in mail, Internet, or telephone application"] <- "Unknown"
+data$co_applicant_sex_name[data$co_applicant_sex_name == "Not applicable"] <- "Unknown"
+
+as.data.frame(table(data$applicant_sex_name))
+as.data.frame(table(data$co_applicant_sex_name))
+```
+
+```{r}
+## Creating combined variable
+data$applicants_combined_sex <- paste(data$applicant_sex_name,data$co_applicant_sex_name, sep = " / ")
+
+as.data.frame(table(data$applicants_combined_sex))
+```
+
+```{r}
+## Cleaning up all unknowns
+data$applicants_combined_sex[data$applicants_combined_sex == "Female / Unknown"] <- "Unknown"
+data$applicants_combined_sex[data$applicants_combined_sex == "Male / Unknown"] <- "Unknown"
+data$applicants_combined_sex[data$applicants_combined_sex == "Unknown / Female"] <- "Unknown"
+data$applicants_combined_sex[data$applicants_combined_sex == "Unknown / Male"] <- "Unknown"
+data$applicants_combined_sex[data$applicants_combined_sex == "Unknown / No co-applicant"] <- "Unknown"
+data$applicants_combined_sex[data$applicants_combined_sex == "Unknown / Unknown"] <- "Unknown"
+
+as.data.frame(table(data$applicants_combined_sex))
+```
+
+## Section 5: Developing the 1st Publication Visualization
+
+```{r}
+## Check out racial/ethnicity differences by loan purpose
+data %>%
+  group_by(loan_purpose_name, applicants_combined_race_ethnicity) %>%
+  summarize(mean_loan_amount_000s = round(mean(loan_amount_000s)))
+```
+
+```{r}
+## Filter down to just home purchases
+data_purchases <- data %>%
+  filter(loan_purpose_name == "Home purchase")
+
+data_purchases
+# now just 15,368 observations
+```
+
+```{r}
+## Dropping the "Unknown" race/ethnicity values, since race/ethnicity will be the focus of this portion of the analysis
+data_purchases_race <- data_purchases %>%
+  filter(applicants_combined_race_ethnicity != "Unknown")
+
+data_purchases_race
+# now just 10,079 observations
+```
+
+
+```{r}
+## Check out racial/ethnicity differences for home purchases
+## Summarize loan amount by race/ethnicity
+race_ethnicity_1 <- data_purchases_race %>%
+  group_by(applicants_combined_race_ethnicity) %>%
+  summarize(mean_loan_amount_000s = round(mean(loan_amount_000s)))
+
+## Count by race/ethnicity
+race_ethnicity_2 <- data_purchases_race %>%
+  group_by(applicants_combined_race_ethnicity) %>%
+  count()
+
+## Merging together
+race_ethnicity <- merge(race_ethnicity_1,race_ethnicity_2)
+
+## Percentages
+race_ethnicity <- race_ethnicity %>%
+  mutate(percentage = n / nrow(data_purchases_race))
+
+race_ethnicity
+```
+
+```{r}
+## Let's read in some demographic data on DC to compare the above with
+# Source: https://data.census.gov/cedsci/table?g=0400000US11&tid=ACSDT1Y2017.B03002&hidePreview=false
+dc_demographic <- read.csv("Data_Inputs/dc_demographic_data.csv", stringsAsFactors = FALSE, skip = 1)
+dc_demographic <- as_tibble(dc_demographic)
+
+#dc_demographic
+```
+
+```{r}
+## Cleaning it up
+dc_demographic <- dc_demographic %>%
+  select(-NAME) %>%
+  filter(Geographic.Area.Name == "Estimate!!Total" |
+         Geographic.Area.Name == "Estimate!!Total!!Not Hispanic or Latino!!White alone" |
+         Geographic.Area.Name == "Estimate!!Total!!Not Hispanic or Latino!!Black or African American alone" |  
+         Geographic.Area.Name == "Estimate!!Total!!Not Hispanic or Latino!!American Indian and Alaska Native alone" |
+         Geographic.Area.Name == "Estimate!!Total!!Not Hispanic or Latino!!Asian alone" |
+         Geographic.Area.Name == "Estimate!!Total!!Not Hispanic or Latino!!Native Hawaiian and Other Pacific Islander alone" |
+         Geographic.Area.Name == "Estimate!!Total!!Not Hispanic or Latino!!Some other race alone" |
+         Geographic.Area.Name == "Estimate!!Total!!Not Hispanic or Latino!!Two or more races" |
+         Geographic.Area.Name == "Estimate!!Total!!Hispanic or Latino")
+
+dc_demographic
+```
+
+```{r}
+## Making the labels match with our other data
+dc_demographic$Geographic.Area.Name[dc_demographic$Geographic.Area.Name == "Estimate!!Total"] = "Total"
+
+dc_demographic$Geographic.Area.Name[dc_demographic$Geographic.Area.Name == "Estimate!!Total!!Not Hispanic or Latino!!White alone"] = "White"
+
+dc_demographic$Geographic.Area.Name[dc_demographic$Geographic.Area.Name == "Estimate!!Total!!Not Hispanic or Latino!!Black or African American alone"] = "Black or African American"
+
+dc_demographic$Geographic.Area.Name[dc_demographic$Geographic.Area.Name == "Estimate!!Total!!Not Hispanic or Latino!!American Indian and Alaska Native alone"] = "American Indian or Alaska Native"
+
+dc_demographic$Geographic.Area.Name[dc_demographic$Geographic.Area.Name == "Estimate!!Total!!Not Hispanic or Latino!!Asian alone"] = "Asian"
+
+dc_demographic$Geographic.Area.Name[dc_demographic$Geographic.Area.Name == "Estimate!!Total!!Not Hispanic or Latino!!Native Hawaiian and Other Pacific Islander alone"] = "Native Hawaiian or Other Pacific Islander"
+
+dc_demographic$Geographic.Area.Name[dc_demographic$Geographic.Area.Name == "Estimate!!Total!!Not Hispanic or Latino!!Some other race alone"] = "Other Race"
+
+dc_demographic$Geographic.Area.Name[dc_demographic$Geographic.Area.Name == "Estimate!!Total!!Not Hispanic or Latino!!Two or more races"] = "Multiple Races"
+
+dc_demographic$Geographic.Area.Name[dc_demographic$Geographic.Area.Name == "Estimate!!Total!!Hispanic or Latino"] = "Hispanic or Latino"
+
+dc_demographic
+```
+
+```{r}
+## Renaming columns and calculating percentages
+dc_demographic <- dc_demographic %>%
+  select(race_ethnicity = Geographic.Area.Name, dc_n = District.of.Columbia) %>%
+  mutate(dc_n = as.numeric(dc_n)) %>%
+  mutate(dc_percentage = dc_n / 693972)
+
+dc_demographic
+```
+
+```{r}
+## Dropping total and Other Race so the categories line up between the two dfs
+dc_demographic %>%
+  filter(race_ethnicity != "Total") %>%
+  filter(race_ethnicity != "Other Race")
+```
+
+```{r}
+## Merge the dc data into the df
+race_ethnicity <- merge(race_ethnicity, dc_demographic, by.x = "applicants_combined_race_ethnicity", by.y = "race_ethnicity")
+
+race_ethnicity
+```
+
+```{r}
+## Need to gather the two percentage columns into one
+race_ethnicity <- gather(race_ethnicity, percentage_type, percentage_value, percentage, dc_percentage)
+
+race_ethnicity
+```
+
+```{r}
+## Manipulate dc_percentage values to be negative for graphing purposes
+race_ethnicity <- race_ethnicity %>%
+  mutate(percentage_value = if_else(percentage_type == "dc_percentage", -percentage_value, percentage_value))
+
+race_ethnicity
+```
+
+```{r}
+## Dropping to just white, black, hispanic, and asian
+race_ethnicity <- race_ethnicity %>%
+  filter(applicants_combined_race_ethnicity != "Native Hawaiian or Other Pacific Islander") %>%
+  filter(applicants_combined_race_ethnicity != "American Indian or Alaska Native") %>%
+  filter(applicants_combined_race_ethnicity != "Multiple Races")
+
+## Converting percentage value column to clean formatted percentages for text labels
+race_ethnicity <- race_ethnicity %>%
+  mutate(percentage_value_formatted = abs(percentage_value)) %>%
+  mutate(percentage_value_formatted = scales::percent(percentage_value_formatted, accuracy = 1L))
+
+race_ethnicity
+```
+
+```{r}
+## Making a barchart of race/ethnicity mortgage applications
+positions <- c("Asian", "Hispanic or Latino", "White", "Black or African American")  ## setting the order
+
+plot1 <- ggplot(race_ethnicity, aes(x = applicants_combined_race_ethnicity, y = percentage_value, group = percentage_type, fill = percentage_type)) +      ## initiating the plot                                       
+  geom_bar(stat = "identity") +   ## making it a bar chart
+  coord_flip() +  ## flipping it
+  scale_x_discrete(limits = positions) +  ## implementing the set order from above
+  #ylim(-0.55,0.65)
+  scale_y_continuous(breaks = seq(-0.75, 0.75, 0.25), 
+                     labels = abs(seq(-0.75, 0.75, 0.25)),
+                     limits = c(-0.55,0.65)) +   ## setting the percentage values to my desired values
+  geom_text(aes(label = percentage_value_formatted), size = 4.5, hjust=ifelse(race_ethnicity$percentage_value < 0, 1.2, -0.3)) +  ## adding text labels
+  scale_fill_manual(values = c("grey50", "greenyellow"),
+                    labels = c("Percentage of DC Population",
+                               "Percentage of DC Mortgage Applications")) +   ## setting desired colors and modifying legend labels
+  labs(x = "Applicants'\nRace/Ethnicity\n",
+       y = "\nPercentage",
+       title = "\nBlack and Hispanic consumers are under-represented in mortgage\napplications in Washington, D.C.",
+       subtitle = "\nThe graph shows the disparities by race and ethnicity between the proportion of the overall population (on the left),\nand the proportion of mortgage applications for new home purchases (on the right), in Washington, D.C. in 2017.\n",
+       caption = "\n\nSources: Census ACS (population demographics), Consumer Financial Protection Bureau (HMDA data)\n") +
+  theme_light() +
+  theme(legend.position = "bottom",
+        legend.title = element_blank(),
+        plot.title = element_text(size = 20),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=12),
+        legend.text=element_text(size=12))
+
+
+plot1
+```
+
+```{r}
+## Write to png
+#ggsave("Vizzes/race_ethnicity_applications.png", plot = plot1, width = 11, height = 6)
+```
+
+## Section 6: Developing the 2nd Publication Visualization
+
+```{r}
+## Dropping to just white, black, hispanic, and asian
+data_purchases_race_2 <- data_purchases_race %>%
+  filter(applicants_combined_race_ethnicity != "Native Hawaiian or Other Pacific Islander") %>%
+  filter(applicants_combined_race_ethnicity != "American Indian or Alaska Native") %>%
+  filter(applicants_combined_race_ethnicity != "Multiple Races")
+
+data_purchases_race_2
+# note that we're now down to 9,280 observations
+```
+
+```{r}
+## Boxplot plot for loan amount by race/ethnicity
+positions_2 <- c("Black or African American", "White", "Hispanic or Latino", "Asian")  ## setting the order
+plot2 <- ggplot(data_purchases_race_2, aes(x = applicants_combined_race_ethnicity, y = loan_amount_000s, color = applicants_combined_race_ethnicity)) +    ## initiating the plot
+    #geom_dotplot(binaxis = "y", stackdir = "center", binwidth = 5) +
+    geom_boxplot() +   ## making it a box plot
+    scale_x_discrete(limits = positions_2) +  ## implementing the set order from above
+    scale_color_manual(values = c("skyblue3","mediumseagreen","mediumpurple3","indianred2")) +   ## setting desired colors
+    #ylim(0,2000) +
+    scale_y_continuous(labels = comma, limits = c(0,2000)) +  ## setting and formatting y axis labels
+    labs(x = "\nApplicants' Race/Ethnicity",
+       y = "Loan Amount\n(Thousands of\nDollars)\n",
+       title = "\nBlack and Hispanic consumers tend to apply for smaller loans than\nwhite and Asian consumers, on average.",
+       subtitle = "\nThe graph shows the distribution of the size of the loans requested for new home purchases by consumers in each race/ethnicity\ngroup in Washington, D.C. in 2017.\n",
+       caption = "\n\nSource: Consumer Financial Protection Bureau (HMDA data)\n") +
+  theme_light() +
+  theme(legend.position = "none",
+        legend.title = element_blank(),
+        plot.title = element_text(size = 20),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=12),
+        axis.title.y = element_text(angle = 0, vjust = 0.5))  ## removing legend and formatting text label sizes etc.
+
+
+plot2
+```
+
+```{r}
+## Create list of medians for manual text labels
+data_purchases_race_2 %>%
+  group_by(applicants_combined_race_ethnicity) %>%
+  summarise(median(loan_amount_000s))
+```
+
+```{r}
+## Write to png
+#ggsave("Vizzes/race_ethnicity_loan_amount.png", plot = plot2, width = 11, height = 8.5)
+```
+
+## Section 7: Developing the 3rd Production Visualization
+
+```{r}
+## Looking at outcomes by race/ethnicity
+race_ethnicity_outcomes <- data_purchases_race_2 %>%
+  group_by(applicants_combined_race_ethnicity) %>%
+  count(action_taken_name) %>%
+  mutate(percentage = n / sum(n))
+
+race_ethnicity_outcomes
+```
+
+```{r}
+## Filtering for just the denials
+race_ethnicity_denials <- race_ethnicity_outcomes %>%
+  filter(action_taken_name == "Application denied by financial institution")
+
+race_ethnicity_denials
+```
+
+```{r}
+## plotting the denial rates
+positions_3 <- c("Black or African American", "White", "Hispanic or Latino", "Asian")  ## setting the order
+plot3 <- ggplot(race_ethnicity_denials, aes(x = applicants_combined_race_ethnicity, y = percentage, fill = applicants_combined_race_ethnicity)) +  ## initiating the plot
+  geom_col(width = 0.7) +   ## making it a bar chart
+  scale_x_discrete(limits = positions_3) +   ## implementing the set order from above
+  scale_fill_manual(values = c("skyblue3","mediumseagreen","mediumpurple3","indianred2")) +  ## setting desired colors
+  geom_text(aes(label = paste((round(percentage,3)*100),"%", sep = "")), size = 5, vjust = -0.5) +  ## adding text labels
+  ylim(0,0.13) +   ## setting y-axis scale
+  labs(x = "\nApplicants' Race/Ethnicity",
+       y = "Percent Denied\n",
+       title = "\nBlack and Hispanic consumers are denied mortgage loans at higher rates\nthan white and Asian consumers.",
+       subtitle = "\nThe graph shows the percentage of mortgage applications for new home purchases by consumers in each race/ethnicity group that were\ndenied in Washington, D.C. in 2017.\n",
+       caption = "\n\nSource: Consumer Financial Protection Bureau (HMDA data)\n") +
+  theme_light() +
+  theme(legend.position = "none",
+        legend.title = element_blank(),
+        plot.title = element_text(size = 20),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=12),
+        axis.title.y = element_text(angle = 0, vjust = 0.5))  ## removing legend and formatting text label sizes etc
+
+plot3
+```
+
+```{r}
+## Write to png
+#ggsave("Vizzes/race_ethnicity_denials.png", plot = plot3, width = 11, height = 8.5)
+```
+
+## Section 8: Filtering and Exporting Data for 4th Production Visualization in Tableau
+
+```{r}
+## Checking out denial reasons
+denial_reasons <- data_purchases_race_2 %>%
+  group_by(applicants_combined_race_ethnicity) %>%
+  count(denial_reason_name_1) %>%
+  filter(denial_reason_name_1 != "") %>%
+  mutate(percentage = n / sum(n))
+
+denial_reasons
+```
+
+```{r}
+## Write to csv
+#write.csv(denial_reasons,'Data_Outputs/denial_reasons.csv')
+```
+
+## Section 9: Statistical Modeling on Denials (Didn't pan out to anything used in final project)
+
+```{r}
+## Adding denied column in data_purchases_race_2
+data_purchases_race_2$denied <- 0
+data_purchases_race_2$denied[data_purchases_race_2$action_taken_name == "Application denied by financial institution"] <- 1
+
+## Adding column for loan amount / income
+data_purchases_race_2 <- data_purchases_race_2 %>%
+  mutate(loan_amount_income_ratio = loan_amount_000s / applicant_income_000s)
+
+data_purchases_race_2
+```
+
+```{r}
+## Checking on missing values
+data_purchases_race_2_na <- data_purchases_race_2 %>%
+    summarise_all(funs(sum(is.na(.))))
+
+t(data_purchases_race_2_na)
+```
+
+```{r}
+## Creating a version of the data with NA's removed for modeling
+data_purchases_race_2_logit <- data_purchases_race_2 %>%
+  drop_na(loan_amount_income_ratio)
+
+data_purchases_race_2_logit  # now 9,231 rows
+```
+
+```{r}
+## Running the logit model - just race/ethnicity
+logit = glm(denied ~ relevel(factor(applicants_combined_race_ethnicity), ref = "White"), 
+         data = data_purchases_race_2_logit, family = binomial(link = "logit"))
+
+summary(logit)
+```
+
+```{r}
+## Running the logit model - race/ethnicity + loan_amount_income_ratio
+logit_2 = glm(denied ~ loan_amount_income_ratio + relevel(factor(applicants_combined_race_ethnicity), ref = "White"), 
+         data = data_purchases_race_2_logit, family = binomial(link = "logit"))
+
+summary(logit_2)
+```
+
+```{r}
+## Getting the fitted values from the 2nd logit model in the dataframe
+data_purchases_race_2_logit$fitted_values_logit <- fitted(logit_2)
+
+data_purchases_race_2_logit
+```
+
+```{r}
+## Quick plot to check relationship
+ggplot(data = data_purchases_race_2_logit %>% filter(loan_amount_income_ratio < 20), aes(x = loan_amount_income_ratio, y = fitted_values_logit, color = applicants_combined_race_ethnicity)) +
+    geom_point(alpha=0.7, size = 2)
+```
+
+## Section 10: Filtering and Exporting Data for 5th and 6th Production Visualizations
+
+```{r}
+## Calculating percentage of applications by race/ethnicity by census tract
+tract_race_data <- data_purchases_race_2 %>%
+  group_by(census_tract_number) %>%
+  count(applicants_combined_race_ethnicity) %>%
+  mutate(percentage = n / sum(n)) %>%
+  select(-n) %>%
+  spread(applicants_combined_race_ethnicity,percentage) %>%
+  rename(Black_or_African_American = `Black or African American`) %>%
+  rename(Hispanic_or_Latino = `Hispanic or Latino`) %>%
+  mutate(Asian = replace_na(Asian,0)) %>%
+  mutate(Black_or_African_American = replace_na(Black_or_African_American,0)) %>%
+  mutate(Hispanic_or_Latino = replace_na(Hispanic_or_Latino,0)) %>%
+  mutate(White = replace_na(White,0)) %>%
+  drop_na(census_tract_number)
+
+## Getting the minority pop values by tract
+minority_pop <- data_purchases_race_2 %>%
+  group_by(census_tract_number) %>%
+  count(minority_population)
+
+## Merging together
+tract_race_data <- merge(tract_race_data, minority_pop)
+
+tract_race_data
+```
+
+```{r}
+## Re-formatting so race/ethnicity values are in the same column and standardizing the scales/rounding
+tract_race_data_2 <- tract_race_data %>%
+  select(-Asian,-Hispanic_or_Latino) %>%
+  gather(race_ethnicity,percentage_applications,Black_or_African_American:White) %>%
+  arrange(census_tract_number) %>%
+  mutate(percentage_applications = round(percentage_applications * 100)) %>%
+  mutate(minority_population = round(minority_population))
+
+tract_race_data_2
+```
+
+```{r}
+## Plotting applications vs. tract demographics - ended up recreating this in Tableau with dynamic functionality instead
+plot4 <- ggplot(data = tract_race_data_2 %>% filter(n >20), aes(x = minority_population, y = percentage_applications, color = race_ethnicity)) +
+    geom_point(alpha=0.7, size = 2) +
+    scale_color_manual(values = c("mediumseagreen","indianred2"),
+                       labels = c("Black or African-American",
+                               "White")) +
+    labs(x = "\nCensus Tract Non-White Population Percentage",
+       y = "Percentage of Applications\nby Race/Ethnicity\n",
+       title = "\nWhite consumers make up a majority of mortgage applications in most census\ntracts, but applications drop off significantly in tracts with large non-White\npopulations.",
+       subtitle = "\nThe graph shows the relationship between the percentage of mortgage applications for new home purchases by White and Black consumers in\neach census tract, and the demographic makeup of the census tract, in Washington, D.C. in 2017. \n",
+       caption = "\n\nSource: Consumer Financial Protection Bureau (HMDA data on mortgage apllications)\n") +
+    theme_light() +
+    theme(legend.position = "right",
+        legend.title = element_blank(),
+        plot.title = element_text(size = 20),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+
+plot4
+```
+
+```{r}
+## Writing dataset to csv
+#write_csv(tract_race_data_2, 'Data_Outputs/tract_race_data_2.csv')
+```
+
+```{r}
+## Altering format of census tract values so they speak to my shape file;  creating delta of white applications and white pop
+tract_race_data_3 <- tract_race_data %>%
+  mutate(census_tract_integer = as.integer(census_tract_number)) %>%
+  mutate(census_tract_detail = str_sub(sprintf("%.2f",census_tract_number),-2)) %>%
+  mutate(census_tract_leading_0 = formatC(census_tract_integer, width = 4, format = "d", flag = "0")) %>%
+  mutate(census_tract_id = paste0(census_tract_leading_0,census_tract_detail)) %>%
+  select(-census_tract_integer,-census_tract_detail,-census_tract_leading_0) %>%
+  mutate(white_population = 100 - minority_population) %>%
+  mutate(white_application_percentage = White * 100) %>%
+  mutate(white_application_population_delta = white_application_percentage - white_population)
+
+tract_race_data_3
+```
+
+```{r}
+## Writing dataset to csv
+#write_csv(tract_race_data_3, 'Data_Outputs/tract_race_data_3.csv')
+```
+
+## Section 11: Exploring Income Data Further (Didn't pan out to anything used in final project)
+
+```{r}
+## Calculating mean/median income value by census tract
+tract_income_data <- data_purchases_race_2 %>%
+  group_by(census_tract_number) %>%
+  summarise(mean_applicant_income = mean(applicant_income_000s, na.rm = TRUE), median_applicant_income = median(applicant_income_000s, na.rm = TRUE)) %>%
+  drop_na(census_tract_number)
+
+## Getting the tract to msamd income
+tract_msamd <- data_purchases_race_2 %>%
+  group_by(census_tract_number) %>%
+  count(tract_to_msamd_income)
+
+## Merging together
+tract_income_data <- merge(tract_income_data, tract_msamd)
+
+tract_income_data
+```
+
+```{r}
+## Quick plot to check relationship
+ggplot(data = tract_income_data, aes(x = tract_to_msamd_income, y = median_applicant_income)) +
+    geom_point(alpha=0.7, size = 2)
+```
+
+```{r}
+## Calculating mean/median income value by census tract
+tract_loan_value <- data_purchases_race_2 %>%
+  group_by(census_tract_number) %>%
+  summarise(mean_loan_value = mean(loan_amount_000s, na.rm = TRUE), median_loan_value = median(loan_amount_000s, na.rm = TRUE)) %>%
+  drop_na(census_tract_number)
+
+## Getting the tract to msamd income
+tract_msamd <- data_purchases_race_2 %>%
+  group_by(census_tract_number) %>%
+  count(tract_to_msamd_income)
+
+## Merging together
+tract_loan_value <- merge(tract_loan_value, tract_msamd)
+
+tract_loan_value
+```
+
+```{r}
+## Quick plot to check relationship
+ggplot(data = tract_loan_value, aes(x = tract_to_msamd_income, y = mean_loan_value)) +
+    geom_point(alpha=0.7, size = 2)
+```
+
